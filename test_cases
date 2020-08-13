@@ -1,0 +1,26 @@
+test plan - 
+
+1. random test cases (used 6 million random test cases, and added a builtin verifier in the main code to check correctness)
+
+2. tailored test cases - 
+    each test case is of the form:
+    (type of operand 1, type of operand 2, type of result, number of normalisations)
+    we also test for the rounding direction correctness in subsequent test cases (show that we do not round away from 0 or towards 0 or towards +inf or towards -inf, but use the correct default rounding used by IEEE 754 standards
+    also see "corner" cases for overflow (exact overflow, underflow)
+    
+    type of floating point number - 
+        a. normal
+        b. denormal
+        c. 0
+        d. inf
+        e. -inf
+        f. nan
+
+    so about 21 * 5 test cases
+
+1. 
+ 01000001100001100000000000000000
+ 11000001100001100000000000000000
+Here we use a test case of the form a + (-a).
+
+2. denormal 

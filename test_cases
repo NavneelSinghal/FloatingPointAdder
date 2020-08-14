@@ -1,22 +1,29 @@
-test plan - 
+TEST PLAN 
 
-1. random test cases (used 6 million random test cases, and added a built-in verifier in the main code to check correctness)
+We divide testing into two major chunks - randomized testing and tailored testing.
 
-2. tailored test cases -
-    for each test case, we keep the following data in mind:
+1. Randomized test cases (used 6 million random test cases, and added a built-in verifier in the main code to check correctness)
+
+2. Tailored test cases -
+    For the development of each test case, we keep the following 4-tuple of data in mind:
     (type of operand 1, type of operand 2, type of result, number of normalisations)
-    we also test for the rounding direction correctness in subsequent test cases (show that we do not round away from 0 or towards 0 or towards +inf or towards -inf, but use the correct default rounding used by IEEE 754 standards
-    we also see "corner" cases for overflow (exact overflow, underflow, effect of rounding on overflow/underflow)
+    We also test for the rounding direction correctness in subsequent test cases (show that we do not round away from 0 or towards 0 or towards +inf or towards -inf, but use the correct default rounding used by IEEE 754 standards
+    We also see corner cases for overflow (exact overflow, underflow, effect of rounding on overflow/underflow). Here exact means that the result is just sufficient to cause overflow/underflow.
     
-    type of floating point number - 
-        a. normal
+    Different types of floating point numbers - 
+        a. normal (we only call positive or negative floating point numbers normal, zero is treated as a special case)
         b. denormal
         c. 0
         d. inf
         e. -inf
         f. nan
 
-Quick testing:
+In the tailored test cases, we implement two types of testing:
+
+1. Quick testing - preliminary tests used and found during development of the adder to ensure the correctness.
+2. Systematic testing - exhaustive tests used in the testing and debugging phase
+
+QUICK TESTING
 
 1. a + (-a)
 
@@ -68,12 +75,12 @@ Quick testing:
 00000000100000000000000000000100
 10000000100000000000000000000011
 
-11. another test case where result needs to be normalised after the rounding
+11. another test case where the result needs to be normalised after the rounding
 
 00000001001010101010101010101010
 00000000101010101010101010101011
 
-Systematic test cases
+SYSTEMATIC EXHAUSTIVE TESTING
 
 1. denormal + denormal = denormal
 
@@ -165,6 +172,7 @@ Systematic test cases
 7. normal + normal = normal
 
 // done in the random testing
+// (most test cases are of this form)
 
 8. normal + normal = 0
 

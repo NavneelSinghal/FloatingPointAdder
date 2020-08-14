@@ -63,11 +63,12 @@ string stitch (int sign, int exponent, int significand) {
     return s;
 }
 
-#define fastio ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 
 int main (int argc, char* argv[]) {
 
-    fastio;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
     cout << setprecision(100) << fixed;
 
     if (argc > 1) {

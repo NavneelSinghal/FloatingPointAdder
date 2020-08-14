@@ -41,4 +41,8 @@ After the checking has been complete, we print the binary representation of the 
 
 ## Testing
 
-For the testing, see `test_cases.md`.
+For the testing plan, see `test_cases.md`.
+
+As mentioned in the mentioned document, we have two kinds of tests - random and corner cases. For the random cases, run `make brute`, and to clean the directory with files which have been generated from that run, run `make cleanrandom`.
+
+For running the corner cases, run `make run`.

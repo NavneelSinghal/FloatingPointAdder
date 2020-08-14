@@ -10,11 +10,10 @@ using namespace std;
 union floating {
     unsigned n;
     float f;
-};
+} fl;
 
 // float to string
 string internal_float (float f) {
-    floating fl;
     fl.f = f;
     bitset<32> b(fl.n);
     return b.to_string();
@@ -22,7 +21,6 @@ string internal_float (float f) {
 
 // convert a string to a float
 float conv_to_float (const string& s) {
-    floating fl;
     fl.n = bitset<32>(s).to_ulong();
     return fl.f;
 }

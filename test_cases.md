@@ -451,7 +451,7 @@ In the tailored test cases, we implement two types of testing:
 
     10000000100000000000000000000001
 
-34. Rounding test cases
+34. Rounding test cases (based on the guard, round and sticky bits)
 
     01000000011000000000000000011111
     
@@ -484,4 +484,3 @@ In the tailored test cases, we implement two types of testing:
     11000000011000000000000000011111
     
     11000001011100000000000000001001
-

@@ -41,4 +41,4 @@ After the checking has been complete, we print the binary representation of the 
 
 ## Testing
 
-For the testing, see `test_cases`.
+For the testing, see `test_cases.md`.

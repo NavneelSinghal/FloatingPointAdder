@@ -1,8 +1,0 @@
-1. Test on corner cases
-2. Remove debug logs
-3. Look at the TODOs
-4. Fix 0
-5. Implement a function that checks whether number is +-inf or +-NaN (for denormal, I think it is okay to just use their normal representation and let them accumulate)
-6. Take the idea that the significand is supposed to have first digit 1 for normal and inf/nan and  0 for 0 or denormal, into account, when doing the reduction
-7. inf has mantissa 0 and not 111111 dumbass
-8. look at the sticky bit stuff sent on group

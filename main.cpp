@@ -68,10 +68,10 @@ string stitch (int sign, int exponent, int significand) {
 #define fastio ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 
 int main (int argc, char* argv[]) {
-    
+
     fastio;
     cout << setprecision(100) << fixed;
-    
+
     if (argc > 1) {
         freopen(argv[1], "r", stdin);
     } else {
@@ -80,16 +80,16 @@ int main (int argc, char* argv[]) {
     }
 
     string s, t;
-    
+
     while (cin >> s) {
         cin >> t;
 
         int cycles = 0;
 
-        // prefix : meaning
-        // s        first operand
-        // t        second operand
-        // r        result
+        // prefix | meaning
+        // s      | first operand
+        // t      | second operand
+        // r      | result
         int s_int, s_exponent, s_sign, s_significand, s_type;
         int t_int, t_exponent, t_sign, t_significand, t_type;
         int r_int, r_exponent, r_sign, r_significand, r_type;
@@ -99,7 +99,7 @@ int main (int argc, char* argv[]) {
 
         s_exponent = (s_int >> 23) & ((1 << 8) - 1);
         t_exponent = (t_int >> 23) & ((1 << 8) - 1);
-       
+
         s_sign = (s_int >> 31) ? -1 : 1;
         t_sign = (t_int >> 31) ? -1 : 1;
 
@@ -107,7 +107,7 @@ int main (int argc, char* argv[]) {
         // shifting by 3 because of guard, round and sticky bits
         if (s_exponent == 0) s_significand = (s_int & ((1 << 23) - 1)) << 3;
         else s_significand = ((1 << 23) | (s_int & ((1 << 23) - 1))) << 3;
-       
+
         if (t_exponent == 0) t_significand = (t_int & ((1 << 23) - 1)) << 3;
         else t_significand = ((1 << 23) | (t_int & ((1 << 23) - 1))) << 3;
 
@@ -204,7 +204,7 @@ int main (int argc, char* argv[]) {
             } else if (r_exponent == 255) {
                 if (r_significand >= (1 << 26)) {
                     r_significand = 1 << 26;
-                    cerr << "inf\n";
+                    cerr << ((r_sign == -1) ? "-" : "") << "inf\n";
                     break;
                 } else {
                     assert(false);
@@ -228,7 +228,7 @@ int main (int argc, char* argv[]) {
 
             cycles++;
 
-            // now check if normalised
+            // checking for normalisation
             if (r_significand < (1 << 27)) {
                 break;
             }
@@ -254,14 +254,13 @@ int main (int argc, char* argv[]) {
                 cout << internal_float(r_actual) << endl;
                 cout << r_rep << endl;
                 cout << cycles << endl;
-            }
+            } 
             assert(r_actual == r_float);
             assert(r_rep == internal_float(r_actual));
+        } else {
+            assert (r_type == 2);
+            assert (r_rep == "01111111111111111111111111111111");
         }
-
-        // cout << "s " << s_sign << " " << s_exponent << " " << s_significand << " " << s << '\n';
-        // cout << "t " << t_sign << " " << t_exponent << " " << t_significand << " " << t << '\n';
-        // cout << "r " << r_sign << " " << r_exponent << " " << r_significand << " " << r_rep << '\n';
 
         cout << r_rep << " " << cycles << '\n';
     }
